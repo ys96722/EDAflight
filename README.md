@@ -10,7 +10,6 @@ To run this on your local machine, clone the repository onto your machine and ru
 
 - [RStudio](https://www.rstudio.com/) - The framework we used to create the analysis
 - Jupyter Notebook - The environment we used to create the Python portion
-- [Kaggle](https://kaggle.com/) - Used to obtain the datasets
 
 ## Authors
 
