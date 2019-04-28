@@ -4,7 +4,11 @@ This is an EDA on the infamous Flights Dataset.
 
 ## Getting Started
 
-To run this on your local machine, clone the repository onto your machine and run the each script file to see the results.
+- Decompress the zip file work under this directory
+- Run `downloadData.sh` to fetch original datasets and set up the working environment
+- Run `....hive` to generate the datasets used for plots (saved to the folder `generated_datasets`)
+- Run `main.R` to generate plots (generated plots will be stored in the folder `plots`)
+- Run `....py` to generate plots (*save plots?*)
 
 ## Built With
 
