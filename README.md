@@ -32,14 +32,25 @@ This is an EDA on the infamous Flights Dataset.
 - byModel (Hive)
 - ...
 ### 3 Visualization & Analysis
-#### 3.1  Feature Analysis (LY) stream graph for each variable + num flights
-- Departure/Arrival  Delay (JC) (XY)
-- Cancellation (Python) (Yoon)
+#### 3.1  Feature Analysis 
+
+##### 3.1.1 First glance of the features
+*(LY) stream graph for each variable + num flights*
+##### 3.1.2 Delay 
+*(JC) (XY)*
+- Monthly / Day of Week trend of departure/arrival delay
+- Zoom in: Percentile of departure dealy in June
+- Reason of delay
+##### 3.1.3  Cancellation 
+*(Python) (Yoon)*
 #### 3.2  Multivariate Analaysis & General Trends
-- Treemap Analysis (R) (JC) (YX)
-- Correlation Heatmap Analysis (R) (Yoon)
-- Geography Map Thingy Analysis (Yoon)
-- Most busiest airports (YL)
+##### 3.2.1  Treemap Analysis (R) (JC) (YX)
+- byState
+- byCarrier
+- byModel
+##### 3.2.2 Correlation Heatmap Analysis (R) (Yoon)
+##### 3.2.3 Geography Map Thingy Analysis (Yoon)
+##### 3.2.4 Most busiest airports (YL)
 
 ### 4 Case study
 #### 4.1 delay ~  m_year (Yoon)
