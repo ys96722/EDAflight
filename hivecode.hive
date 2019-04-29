@@ -90,10 +90,10 @@ GROUP BY Year, lat, long;
 
 -- output data
 
-hive -e 'select * from air_org' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/air_org.csv
-hive -e 'select * from bystate' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byState.csv
-hive -e 'select * from bycarr' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byCarr.csv
-hive -e 'select * from bymodel' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/bymodel.csv
-hive -e 'select * from bymyear' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/bymyear.csv
-hive -e 'select * from byCord' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byCord.csv
+hive -e 'select * from air_org' | sed 's/[\t]/,/g' >  ~/generated_datasets/air_org.csv
+hive -e 'select * from bystate' | sed 's/[\t]/,/g' >  ~/generated_datasets/byState.csv
+hive -e 'select * from bycarr' | sed 's/[\t]/,/g' >  ~/generated_datasets/byCarr.csv
+hive -e 'select * from bymodel' | sed 's/[\t]/,/g' >  ~/generated_datasets/bymodel.csv
+hive -e 'select * from bymyear' | sed 's/[\t]/,/g' >  ~/generated_datasets/bymyear.csv
+hive -e 'select * from byCord' | sed 's/[\t]/,/g' >  ~/generated_datasets/byCord.csv
 
