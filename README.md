@@ -46,8 +46,12 @@ This is an EDA on the infamous Flights Dataset.
 #### 3.2  Multivariate Analaysis & General Trends
 ##### 3.2.1  Treemap Analysis (R) (JC) (YX)
 - byState
+
 - byCarrier
+
 - byModel
+![Delay Rate for Each Model](/Users/apple/Documents/GitHub/EDAflight/plots/Delay Rate for Each Model.png)
+  
 ##### 3.2.2 Correlation Heatmap Analysis (R) (Yoon)
 ##### 3.2.3 Geography Map Thingy Analysis (Yoon)
 ##### 3.2.4 Most busiest airports (YL)
