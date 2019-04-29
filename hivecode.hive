@@ -1,0 +1,99 @@
+-- import airline dataset 
+
+CREATE TABLE airlines (Year INT, Month INT, DayofMonth INT, DayOfWeek INT, DepTime INT, CRSDepTime INT, ArrTime INT, CRSArrTime INT, UniqueCarrier STRING, FlightNum INT, TailNum STRING, ActualElapsedTime INT, CRSElapsedTime INT, AirTime INT, ArrDelay INT, DepDelay INT, Origin STRING, Dest STRING, Distance INT, TaxiIn INT, TaxiOut INT, Cancelled INT, CancellationCode INT,  Diverted INT, CarrierDelay INT, WeatherDelay INT, NASDelay INT, SecurityDelay INT, LateAircraftDelay INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+TBLPROPERTIES ('skip.header.line.count' = '1');
+
+LOAD DATA LOCAL INPATH 'original_datasets/Airline.csv'
+OVERWRITE INTO TABLE airlines;
+
+-- import airport infomation
+
+CREATE TABLE airport(iata STRING, airport STRING, city STRING, state STRING, country STRING, lat FLOAT, long FLOAT)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES
+(
+"separatorChar" = ",",
+"quoteChar"     = "\""
+)
+STORED AS TEXTFILE
+TBLPROPERTIES ('skip.header.line.count' = '1');
+
+LOAD DATA LOCAL INPATH 'original_datasets/airports.csv'
+OVERWRITE INTO TABLE airport;
+
+-- import plane-data
+
+CREATE TABLE plane (tailnum STRING, type STRING, manufacturer STRING, issue_date STRING, model STRING, status STRING, aircraft_type STRING, engine_type STRING,manu_year INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+TBLPROPERTIES ('skip.header.line.count' = '1');
+
+LOAD DATA LOCAL INPATH 'original_datasets/plane-data.csv'
+OVERWRITE INTO TABLE plane;
+
+
+-- combine and merge
+
+-- flag the record where plane was delayed
+CREATE TABLE airlines_new AS
+SELECT *, CASE WHEN DepDelay >0 THEN 1 ELSE 0 END IsDelay
+FROM airlines;
+
+-- combine airline & airport
+
+CREATE TABLE air_org AS
+SELECT airlines_new.*, airport.city, airport.state, airport.lat, airport.long
+FROM airlines_new LEFT JOIN airport ON (airlines_new.Origin = airport.iata);
+
+-- combine airline & plane-data
+
+CREATE TABLE air_plane AS
+SELECT airlines_new.*, plane.manufacturer, plane.model, plane.manu_year
+FROM airlines_new LEFT JOIN plane ON (airlines_new.TailNum = plane.tailnum);
+
+-- group by
+
+-- 1.state
+
+CREATE TABLE bystate AS
+SELECT Year, state,  COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsDelay), SUM(IsDelay)/COUNT(DepDelay), AVG(DepDelay)
+FROM air_org
+GROUP BY Year, state;
+
+-- 2.carrier
+
+CREATE TABLE bycarr AS
+SELECT Year, UniqueCarrier, COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsDelay), SUM(IsDelay)/COUNT(DepDelay), AVG(DepDelay)
+FROM airlines_new
+GROUP BY Year, UniqueCarrier;
+
+-- 3.model
+
+CREATE TABLE bymodel AS
+SELECT Year, manufacturer, model, COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsDelay), SUM(IsDelay)/COUNT(DepDelay), AVG(DepDelay)
+FROM air_plane
+GROUP BY Year, manufacturer, model;
+
+-- 4.manufacture year
+
+CREATE TABLE bymyear AS
+SELECT Year, manu_year, COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsDelay), SUM(IsDelay)/COUNT(DepDelay), AVG(DepDelay)
+FROM air_plane
+GROUP BY Year, manu_year;
+
+-- 5.Coordinate
+
+CREATE TABLE byCord AS
+SELECT Year, lat, long, COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsDelay), SUM(IsDelay)/COUNT(DepDelay), AVG(DepDelay)
+FROM air_org
+GROUP BY Year, lat, long;
+
+-- output data
+
+hive -e 'select * from air_org' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/air_org.csv
+hive -e 'select * from bystate' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byState.csv
+hive -e 'select * from bycarr' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byCarr.csv
+hive -e 'select * from bymodel' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/bymodel.csv
+hive -e 'select * from bymyear' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/bymyear.csv
+hive -e 'select * from byCord' | sed 's/[\t]/,/g' >  ~/Stat480/GroupProject/data/byCord.csv
+
