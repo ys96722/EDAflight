@@ -4,7 +4,11 @@ This is an EDA on the infamous Flights Dataset.
 
 ## Getting Started
 
-To run this on your local machine, clone the repository onto your machine and run the each script file to see the results.
+- Decompress the zip file work under this directory
+- Run `downloadData.sh` to fetch original datasets and set up the working environment
+- Run `....hive` to generate the datasets used for plots (saved to the folder `generated_datasets`)
+- Run `main.R` to generate plots (generated plots will be stored in the folder `plots`)
+- Run `....py` to generate plots (*save plots?*)
 
 ## Built With
 
@@ -28,14 +32,26 @@ To run this on your local machine, clone the repository onto your machine and ru
 - byModel (Hive)
 - ...
 ### 3 Visualization & Analysis
-#### 3.1  Feature Analysis (LY) stream graph for each variable + num flights
-- Departure/Arrival  Delay (JC) (XY)
-- Cancellation (Python) (Yoon)
+#### 3.1  Feature Analysis 
+
+##### 3.1.1 First glance of the features
+*(LY) stream graph for each variable + num flights*
+##### 3.1.2 Delay 
+*(JC) (XY)*
+- Monthly / Day of Week trend of departure/arrival delay
+- Zoom in: Percentile of departure dealy in June
+- Reason of delay
+##### 3.1.3  Cancellation 
+*(Python) (Yoon)*
 #### 3.2  Multivariate Analaysis & General Trends
-- Treemap Analysis (R) (JC) (YX)
-- Correlation Heatmap Analysis (R) (Yoon)
-- Geography Map Thingy Analysis (Yoon)
-- Most busiest airports (YL)
+##### 3.2.1  Treemap Analysis (R) (JC) (YX)
+- byState
+- byCarrier
+- byModel
+![Cancellation Rate for Each Carrier](plots/Cancellation Rate for Each Carrier.png)
+##### 3.2.2 Correlation Heatmap Analysis (R) (Yoon)
+##### 3.2.3 Geography Map Thingy Analysis (Yoon)
+##### 3.2.4 Most busiest airports (YL)
 
 ### 4 Case study
 #### 4.1 delay ~  m_year (Yoon)
