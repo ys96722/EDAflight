@@ -72,8 +72,46 @@ We expected that there would be more delay time in winter, but actually June and
 
 ##### 3.1.3  Cancellation 
 
-*(Python) (Yoon)*
+- Distribution Plots
+
+  - Number of Cancellations by Month in 1998
+
+    ![Number of Cancellations by Month in 1998](plots/Number of Cancellations by Month in 1998.png)
+
+    In the above plot, there is a clear spike in September of 1998, and the rest of the months stay consistent in its cancellation numbers. Although the exact cause is not known in the data, there was Swissair Flight 111 that crashed near Peggys Cove, Nova Scotia, which killed 229 people on board. 
+
+    
+
+  - Number of Cancellations by Code in 2006
+
+    ![Number of Cancellations by Code in 2006](plots/Number of Cancellations by Code in 2006.png)
+
+    ```
+    A = carrier, B = weather, C = NAS, D = security
+    ```
+
+    Generally, Code D (Secutiy) seems as it does not cancel flights much at all. Code A (Carrier) and Code C (NAS) stay consistent in their magnitudes among the causes of cancellation throughout the year. However, Code B (Weather) varies in its magnitude more dramatically depending on the month, spiking in December and February and calming down in summer months.
+
+  
+
+  - Distribution of Cancellation Codes
+
+    ![Distribution of Cancellation Codes](plots/Distribution of Cancellation Codes.png)
+
+     Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+
+  
+
+  - Rate of Cancellation by Carrier
+
+    ![Rate of Cancellation by Carrier](plots/Rate of Cancellation by Carrier.png)
+
+    Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+
+
+
 #### 3.2  Multivariate Analaysis & General Trends
+
 ##### 3.2.1  Treemap Analysis (R) (JC) (YX)
 
 We make the following treemaps to uncover span of the delays and cancellations over where the flight departure, which airline is the carrier and what kind of plane used for the flight.
@@ -124,11 +162,25 @@ This graph is not that interesting, because the colors are similar between model
 
 ##### 3.2.2 Correlation Heatmap Analysis (R) (Yoon)
 
+![Correlation Heatmap](plots/Correlation Heatmap.png)
+
+ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+
+
+
 ##### 3.2.3 Geography Map Thingy Analysis (Yoon)
-##### 3.2.4 Most busiest airports (YL)
+
+##### 3.2.4 Busiest airports (YL)
 
 ### 4 Case study
 #### 4.1 delay ~  m_year (Yoon)
+
+![Mean Delay by Manufactured Year](plots/Mean Delay by Manufactured Year.png)
+
+ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+
+
+
 #### 4.2 (actual - expected) ~ delay (Yoon)
 
 ### 5 Conclusion
