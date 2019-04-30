@@ -2,10 +2,10 @@
 
 This is an EDA on the infamous Flights Dataset.
 
-## Getting Started
+## To Reproduce the result
 
-- Decompress the zip file work under this directory
 - Run `downloadData.sh` to fetch original datasets and set up the working environment
+- Put the datasets from `airlinesauxiliaryfiles.zip` provided with the assignment 
 - Run `....hive` to generate the datasets used for plots (saved to the folder `generated_datasets`)
 - Run `main.R` to generate plots (generated plots will be stored in the folder `plots`)
 - Run `....py` to generate plots (*save plots?*)
@@ -40,7 +40,27 @@ This is an EDA on the infamous Flights Dataset.
 *(JC) (XY)*
 - Monthly / Day of Week trend of departure/arrival delay
 
-- Zoom in: Percentile of departure dealy in June
+  - Look through the year
+
+  First we make the following plot to show how average arrival delay time and departure delay time of each month change through the year for 1998 and 2006.
+
+   ![Monthly Average Delay](plots/Monthly Average Delay.png)
+
+  As shown in the plot, all the lines generally follow the same trend for the first half of the year (January - June) and reach a peak at June. Then for June to December, 2006 generally have longer delay than 1998. For both of the two years, monthly average departure delays are longer than arrival delays. Base on this observation, we suspect there might be a relationship between the difference of expected time expansion minus actual time expansion and departure delay time. In another words, we wonder if departure delay can cause the flight spend less time to get the destination. We will take a deeper look into this in the case study **4.2**. We notice that there is a peak in June. Now let take another look into that. 
+
+  The following plot shows the percentiles of departure delay in June for the two years.
+
+  ![Percentile of Depature Delay in June](plots/Percentile of Depature Delay in June.png)
+
+  We can see from the plot that the departure delay for the two year roughly follow same distribution.
+
+  - Look through the week
+
+  Now we make the following plot to show how average arrival delay time and departure delay time of each day of week change through a week for 1998 and 2006.
+
+  ![Day of Week Average Delay](plots/Day of Week Average Delay.png)
+
+  According to the plot, for each of day in a week except for Tuesday, average delay in 2006 is higher than it in 1998 .  Also we can see that Fridays have highest average delay time and Saturdays have lowest average delay time.  
 
 - Reason of delay in 2006
 
@@ -55,17 +75,46 @@ We expected that there would be more delay time in winter, but actually June and
 *(Python) (Yoon)*
 #### 3.2  Multivariate Analaysis & General Trends
 ##### 3.2.1  Treemap Analysis (R) (JC) (YX)
+
+We make the following treemaps to uncover span of the delays and cancellations over where the flight departure, which airline is the carrier and what kind of plane used for the flight.
+
 - byState
+
+The following 4 treemaps show the cancellation rate, delay rate, and average delay time for each state. For all the 4 plots, every small rectangle represents a state, the sizes of the rectangles represent the number of flights recorded. And the color of them in each plot show the value of the 3 measures just mentioned respectively.
+
+First we notice the total number expanded from 1998 to 2006. California had the largest number of flights in both 1998 and 2006. 
+
+![Cancellation Rate for Each State](plots/Cancellation Rate for Each State.png)
+
+In terms of cancellation rate, things were generally better in 2006 than it was in 1998. In year 1998, Mississippi and Minnesota had the worst cancellation rate. 
+
+![Delay Rate for Each State](plots/Delay Rate for Each State.png)
+
+![Average Delay Time for Each State](plots/Average Delay Time for Each State.png)
+
+The 2 plots above tell us that people in Hawaii, Idaho and Montana are really since their flights almost never got delayed. On the other hand, our Illinois is one of the states where flight got delayed most.
 
 - byCarrier
 
+Now, lets find out flights of which carrier got cancelled or delayed most. For the 3 following treemaps, each rectangle stands for a carrier. First we notice that there are more carriers recorded in 2006 than in 1998. 
+
+![Cancellation Rate for Each Carrier](plots/Cancellation Rate for Each Carrier.png)
+
+In terms of cancellation rate, NW had a really bad record in 1998, but it got better in 2006. In 2006, MQ was the carrier had highest cancellation rate.
+
+![Delay Rate for Each Carrier](plots/Delay Rate for Each Carrier.png)
+
+![Average Delay Time for Each Carrier](plots/Average Delay Time for Each Carrier.png)
+
+According to the 2 treemaps above, HA and AQ had really low delay time and rate.
+
 - byModel
 
-  The next two graphs show the relationships between cancellation rate and the plane model as well as the delay rate and the model type. The size of a square indicates the number of flights with that particular model. And a darker color indicates a larger ratio value.
+The next two graphs show the relationships between cancellation rate and the plane model as well as the delay rate and the model type. The size of a square indicates the number of flights with that particular model. And a darker color indicates a larger ratio value.
 
-  For the two years, Boeing was the leading position of the number of flights. In 1998, McDonnell Douglas was in the second position while the ranking was lowered to the fifth in 2006. Embraer and Bombardier INC., which were not in the top 4 in 1998, became the second and third largest manufactures in 2006. The models in 1998 and 2006 differed a lot. Most old models were replaced by newer ones.
+For the two years, Boeing was the leading position of the number of flights. In 1998, McDonnell Douglas was in the second position while the ranking was lowered to the fifth in 2006. Embraer and Bombardier INC., which were not in the top 4 in 1998, became the second and third largest manufactures in 2006. The models in 1998 and 2006 differed a lot. Most old models were replaced by newer ones.
 
-  ![Cancellation Rate for Each Model](plots/Cancellation Rate for Each Model.png)
+![Cancellation Rate for Each Model](plots/Cancellation Rate for Each Model.png)
 
 In 2006, most models in the top 8 manufactures had relatively low cancellation rates. On the contrary, large cancellation rates happened to flights with small manufactures. But this trend was not the same in 1998, the top several manufactures all had models with high cancellation rates.
 
