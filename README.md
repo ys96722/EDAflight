@@ -169,7 +169,31 @@ This graph is not that interesting, because the colors are similar between model
 
 
 
-##### 3.2.3 Geography Map Thingy Analysis (Yoon)
+##### 3.2.3 Geographical Heatmap Analysis (Yoon)
+
+- By Number of Flights
+
+  ![numFlightMap](plots/numFlightMap.png)
+
+  Based on the above map, the top five states with most number of flights are California, Texas, Illinois, Florida, and Georgia. 
+
+
+
+- By Rate of Cancellation
+
+  ![rateCancellationMap](plots/rateCancellationMap.png)
+
+  Based on the above map, the top four states with the highest rate of cancelled flights are South Dakota, West Virginia, Michigan, and Maine.
+
+
+
+- By Rate of Delay
+
+  ![rateDelayMap](plots/rateDelayMap.png)
+
+  Based on the above plot, the top five states with the highest rate of cancelled flights are Illinois, Georgia, Michigan, Nevada, and Texas. It should be noted that the relative distribution of the above map follows a similar trend with the first geographical heatmap (By Number of Flights), which suggests that the rate of delay may be related to the number of flights in a certain state.
+
+
 
 ##### 3.2.4 Busiest airports (YL)
 
@@ -181,8 +205,6 @@ This graph is not that interesting, because the colors are similar between model
  Based on the graph above, the average delay times have sharp declines and inclines throughout all of the years. This may be due to several possible causes. Certain planes stop flying after some age, leading to sudden decrease and increase during the cycles when old planes stop flying and new planes start flying. Also, this may be due to the fact that the overall quality of the planes in a certain year is much more influential in the delay times, leading to sharp differences in each year/cycle.
 
 
-
-#### 4.2 (actual - expected) ~ delay (Yoon)
 
 ### 5 Conclusion
 
