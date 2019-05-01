@@ -25,17 +25,53 @@ This is an EDA on the infamous Flights Dataset.
 
 ## Roadmap
 
-### 1 Introduction (LY)
+### 1 Introduction 
+
+Imagine when we were in an airport ready for the vacation, but suddenly told by the broadcast that the flight was delayed, how frustrating and annoying we would be at that time. In order to have a better understanding of what lead to the delay and a better chance to avoid it, we decide to dive in to the airlines dataset we get from the US Department of Transportation’s Bureau of Transportation Statistics (BTS). Focus on the airline data of 1998 and 2006, we would explore many possibilities that could cause the delay, such as wether condition, airport location, seasonal trend and so on. 
+
+There are four datasets we work on : *airlines, airports, carriers* and *plane-data*. The dataset *Airlines* contains 29 variables, recording flight's date, delay time and many other information. *Airport* include 7 variables, showing the specific location of each airports, such as city, state where it locates and an exact coordinate . The *carrier* dataset only has 2 variables, the carrier codes and their full name. As for the *plane-data*, it contains 9 variables recording comprehensive information of each plane. For example, it includes the
+responding manufacturer, model type and the year it produced. These are all valuable information for us to explore the causes for delay of planes, especially for the delay of depature and cancellation. In the following, we would join different dataset according to our need to analyze different aspect of airline delay situation. Since there is data in 1998 and 2006, we also want to see if there is any improvement made for the delay and cancellation situaiton through these years. 
+
+
+
+
+
+
 
 ### 2 Wrangling (LY)
 - byCarr (Hive)
+
+  Grouping the dataset by the different carrier, I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for each group. Selecting only 8 variables into this *byCarr* dataset, each record shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different carriers.
+
 - byModel (Hive)
-- ...
+
+  Joining the *plane-data* dataset and *airlines* dataset, I group the new dataset by the year of data, manufacturer, model of the plane. Then I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time in each group. Selecting only 9 variables into this *byModel* dataset, each record shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different manufacturer and model of planes.
+
+- byState(Hive)
+
+  Joining the *airlines* dataset and *airport* dataset, I group the new dataset by the year of data and state where the airport locates. Then I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time in each group. Selecting only 8 variables into this *byState* dataset, each observation shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different year of data and state of the airport.
+
+- byCord(Hive)
+
+  Joining the *airlines* dataset and *airport* dataset, I group the new dataset by the coordination, lattitude and longitude of the airport. Then I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time in each group. Selecting only 8 variables into this *byCord* dataset, each observation shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different year of data, lattitude and longitude of the airport.
+
+- bymyear(Hive)
+
+  Joining the *airlines* dataset and *plane-data* dataset, I group the new dataset by the year of data and manufacture year of plane. Then I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time in each group. By selecting 8 variables into this *bymyear* dataset, each record shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different year of data and different manufacture year of plane.
+
+  
 ### 3 Visualization & Analysis
 #### 3.1  Feature Analysis 
 
 ##### 3.1.1 First glance of the features
 *(LY) stream graph for each variable + num flights*
+
+no stream graph here 
+
+change to?????
+
+change to 
+
 ##### 3.1.2 Delay 
 *(JC) (XY)*
 - Monthly / Day of Week trend of departure/arrival delay
