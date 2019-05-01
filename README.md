@@ -108,21 +108,17 @@ We expected that there would be more delay time in winter, but actually June and
     ```
   
     Generally, Code D (Secutiy) seems as it does not cancel flights much at all. Code A (Carrier) and Code C (NAS) stay consistent in their magnitudes among the causes of cancellation throughout the year. However, Code B (Weather) varies in its magnitude more dramatically depending on the month, spiking in December and February and calming down in summer months.
+  
+    **Case Study**: The storms in 2006 
 
   
 
   - Distribution of Cancellation Codes
 
     ![Distribution of Cancellation Codes](plots/Distribution of Cancellation Codes.png)
-
+  
      Based on the charts above, Code A (Carrier) cancellation takes about half of all the cancellations  that occured in 2006. The second most common type is Code B (Weather), which is a bit more seasonal compared to the other two. Code D (Security) only takes 0.1% of all the cancellations.
 
-  - Rate of Cancellation by Carrier
-
-    ![Rate of Cancellation by Carrier](plots/Rate of Cancellation by Carrier.png)
-
-    In 1998, NW (NorthWest Airlines) definitely stands out from the rest in terms of its magnitude of cancellation rate. In 2006, the top three carriers with highest cancellation rates are MQ (
-  American Eagle Airlines), YV (Mesa Airlines), and EV (Atlantic Southeast Airlines). 
 
 #### 3.2  Multivariate Analaysis & General Trends
 
@@ -152,7 +148,12 @@ Now, lets find out flights of which carrier got cancelled or delayed most. For t
 
 ![Cancellation Rate for Each Carrier](plots/Cancellation Rate for Each Carrier.png)
 
-In terms of cancellation rate, NW had a really bad record in 1998, but it got better in 2006. In 2006, MQ was the carrier had highest cancellation rate.
+In 1998, NW (NorthWest Airlines) definitely stands out from the rest in terms of its magnitude of cancellation rate. In 2006, the top three carriers with highest cancellation rates are MQ (
+American Eagle Airlines), YV (Mesa Airlines), and EV (Atlantic Southeast Airlines). 
+
+**Case Study**: What happened to NorthWest Airlines in 1998
+
+
 
 ![Delay Rate for Each Carrier](plots/Delay Rate for Each Carrier.png)
 
@@ -184,12 +185,11 @@ This graph is not that interesting, because the colors are similar between model
 
 ##### 3.2.4 Busiest airports (YL)
 
-### 4 Case study
-#### 4.1 delay ~  m_year (Yoon)
+##### 3.2.5 delay ~  m_year (Yoon)
 
 ![Mean Delay by Manufactured Year](plots/Mean Delay by Manufactured Year.png)
 
- Based on the graph above, the average delay times have sharp declines and inclines throughout all of the years. This may be due to several possible causes. Certain planes stop flying after some age, leading to sudden decrease and increase during the cycles when old planes stop flying and new planes start flying. Also, this may be due to the fact that the overall quality of the planes in a certain year is much more influential in the delay times, leading to sharp differences in each year/cycle.
+Based on the graph above, the average delay times have sharp declines and inclines throughout all of the years. This may be due to several possible causes. Certain planes stop flying after some age, leading to sudden decrease and increase during the cycles when old planes stop flying and new planes start flying. Also, this may be due to the fact that the overall quality of the planes in a certain year is much more influential in the delay times, leading to sharp differences in each year/cycle.
 
 ### 5 Conclusion
 
