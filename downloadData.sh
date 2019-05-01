@@ -1,4 +1,5 @@
 mkdir plots
+mkdir origional_datasets
 mkdir generated_datasets
 cd origional_datasets
 wget https://raw.githubusercontent.com/coatless/stat490uiuc/master/airlines/airlines_data.sh
