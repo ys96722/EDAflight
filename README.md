@@ -87,7 +87,8 @@ responding manufacturer, model type and the year it produced. These are all valu
 
 This graph shows the total time of delay by reason in each month of 2006. The y-axis indicates the sum of delay time in the unit of minute. For the sum, June, July and December had higher values, while January and February had relatively lower ones. For these five delay reasons, the distributions of them in each month were similar. Late aircraft, NAS, and carrier were three common reasons leading to most delay time, and the weather did not cause too much delay, which is unexpected. Delay caused by security was rare that we can hardly see the blocks with darker color from the graph.
 
-We expected that there would be more delay time in winter, but actually June and July had the largest delay time caused by weather. Thus we might guess that some events or some extreme weather happened at that time. As we went back to the news, we found that there was a severe heat wave in 2006 summer that affected most of the United States and Canada, killing hundreds of people, and temperatures in many locations made the highest temperature records.
+**Case Study: **Hear Wave in 2006 
+We expected that there would be more delay time in winter, but actually June and July had the largest delay time caused by weather. Thus we might guess that some events or some extreme weather happened at that time. As we went back to the news, we found that there was a severe heat wave in 2006 summer that affected most of the United States and Canada, killing hundreds of people, and temperatures in many locations made the highest temperature records.[3]
 
 ##### 3.1.2  Cancellation
 
@@ -104,13 +105,17 @@ We expected that there would be more delay time in winter, but actually June and
     ![Number of Cancellations by Code in 2006](plots/Number of Cancellations by Code in 2006.png)
 
     ```
-  A = carrier, B = weather, C = NAS, D = security
+    A = carrier, B = weather, C = NAS, D = security
     ```
 
     Generally, Code D (Secutiy) seems as it does not cancel flights much at all. Code A (Carrier) and Code C (NAS) stay consistent in their magnitudes among the causes of cancellation throughout the year. However, Code B (Weather) varies in its magnitude more dramatically depending on the month, spiking in December and February and calming down in summer months.
 
-    **Case Study**: The storms in 2006
+    **Case Study**: Extreme Weather in 2006
+    February and December are the top 2 months that most flights got cancelled because of the weather. Thus we look back to the extreme weather in 2006.
 
+    In February 2006, there was a storm called the North America blizzard beginning on the evening of February 11th, and ending in Canada on February 13th. Some hardest hit areas included Connecticut, Delaware, New York, New Jersey, Virginia, Pennsylvania, Massachusetts, Maryland and District of Columbia. The major cities in the northeast received at least a foot of snow. Fatalities occured in several areas. [1]
+
+    Additionally, in December, there was a windstorm, Hanukkah Eve windstorm of 2006, happened, which  was a powerful Pacific Northwest windstorm in the Pacific Northwest region of the United States and southern British Columbia, Canada between December 14, 2006 and December 15, 2006. It produced hurricane-forced wind and heavy rainfall, resulting in hunreds of millions of dollars in damage and serious casualties.[2]
 
 
   - Distribution of Cancellation Codes
@@ -119,12 +124,6 @@ We expected that there would be more delay time in winter, but actually June and
 
      Based on the charts above, Code A (Carrier) cancellation takes about half of all the cancellations  that occured in 2006. The second most common type is Code B (Weather), which is a bit more seasonal compared to the other two. Code D (Security) only takes 0.1% of all the cancellations.
 
-  - Rate of Cancellation by Carrier
-
-    ![Rate of Cancellation by Carrier](plots/Rate of Cancellation by Carrier.png)
-
-    In 1998, NW (NorthWest Airlines) definitely stands out from the rest in terms of its magnitude of cancellation rate. In 2006, the top three carriers with highest cancellation rates are MQ (
-  American Eagle Airlines), YV (Mesa Airlines), and EV (Atlantic Southeast Airlines).
 
 #### 3.2  Multivariate Analaysis & General Trends
 
@@ -132,7 +131,7 @@ We expected that there would be more delay time in winter, but actually June and
 
 We make the following treemaps to uncover span of the delays and cancellations over where the flight departure, which airline is the carrier and what kind of plane used for the flight.
 
-- byState
+- Analysis for the states
 
 The following 4 treemaps show the cancellation rate, delay rate, and average delay time for each state. For all the 4 plots, every small rectangle represents a state, the sizes of the rectangles represent the number of flights recorded. And the color of them in each plot show the value of the 3 measures just mentioned respectively.
 
@@ -148,7 +147,7 @@ In terms of cancellation rate, things were generally better in 2006 than it was 
 
 The 2 plots above tell us that people in Hawaii, Idaho and Montana are really since their flights almost never got delayed. On the other hand, our Illinois is one of the states where flight got delayed most.
 
-- byCarrier
+- Analysis for the carriers
 
 Now, lets find out flights of which carrier got cancelled or delayed most. For the 3 following treemaps, each rectangle stands for a carrier. First we notice that there are more carriers recorded in 2006 than in 1998.
 
@@ -157,7 +156,9 @@ Now, lets find out flights of which carrier got cancelled or delayed most. For t
 In 1998, NW (NorthWest Airlines) definitely stands out from the rest in terms of its magnitude of cancellation rate. In 2006, the top three carriers with highest cancellation rates are MQ (
 American Eagle Airlines), YV (Mesa Airlines), and EV (Atlantic Southeast Airlines).
 
-**Case Study**: What happened to NorthWest Airlines in 1998
+**Case Study**: What happened to Northwest Airlines in 1998
+
+Northwest Airlines fell into troubled labor relations in 1998. It walked away from the bargaining table, locked out its pilots and shut down the airline for more than two weeks. The airline sustained heavy losses as a result, and ended 1998 in the red, after being profitable since 1993.[4]
 
 
 
@@ -167,7 +168,7 @@ American Eagle Airlines), YV (Mesa Airlines), and EV (Atlantic Southeast Airline
 
 According to the 2 treemaps above, HA and AQ had really low delay time and rate.
 
-- byModel
+- Analysis for the models
 
 The next two graphs show the relationships between cancellation rate and the plane model as well as the delay rate and the model type. The size of a square indicates the number of flights with that particular model. And a darker color indicates a larger ratio value.
 
@@ -223,9 +224,17 @@ This graph is not that interesting, because the colors are similar between model
 
 Based on the graph above, the average delay times have sharp declines and inclines throughout all of the years. This may be due to several possible causes. Certain planes stop flying after some age, leading to sudden decrease and increase during the cycles when old planes stop flying and new planes start flying. Also, this may be due to the fact that the overall quality of the planes in a certain year is much more influential in the delay times, leading to sharp differences in each year/cycle.
 
-### 5 Conclusion
+### 4 Conclusion
 
+## Reference
 
+[1] <https://en.wikipedia.org/wiki/North_American_blizzard_of_2006>
+
+[2] https://en.wikipedia.org/wiki/Hanukkah_Eve_windstorm_of_2006>
+
+[3] <https://en.wikipedia.org/wiki/2006_North_American_heat_wave>
+
+[4] <https://en.wikipedia.org/wiki/Northwest_Airlines>
 
 ## License
 
