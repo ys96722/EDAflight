@@ -6,9 +6,9 @@ This is an EDA on the infamous Flights Dataset.
 
 - Run `downloadData.sh` to fetch original datasets and set up the working environment
 - Put the datasets from `airlinesauxiliaryfiles.zip` provided with the assignment 
-- Run `....hive` to generate the datasets used for plots (saved to the folder `generated_datasets`)
+- Run `wrangle.hive` to generate the datasets used for plots (saved to the folder `generated_datasets`)
 - Run `main.R` to generate plots (generated plots will be stored in the folder `plots`)
-- Run `....py` to generate plots (*save plots?*)
+- Run `main.py` to generate plots (*save plots?*)
 
 ## Built With
 
