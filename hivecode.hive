@@ -88,6 +88,18 @@ SELECT Year, lat, long, COUNT(DepDelay), SUM(Cancelled), AVG(Cancelled), SUM(IsD
 FROM air_org
 GROUP BY Year, lat, long;
 
+-- prepare data to plot the chord diagram of flights between the states
+
+CREATE TABLE air_flow AS
+SELECT air_org.*, airport.city AS dest_city, airport.state AS dest_state
+FROM air_org LEFT JOIN airport ON (air_org.Dest = airport.iata);
+
+
+CREATE TABLE top5 AS
+SELECT air_flow.IsDelay, air_flow.Cancelled, air_flow.state, air_flow.dest_state
+FROM air_flow
+WHERE air_flow.state in ("CA","IL","TX","FL","GA") AND air_flow.dest_state in ("CA","IL","TX","FL","GA");
+
 -- output data
 
 hive -e 'select * from air_org' | sed 's/[\t]/,/g' >  ~/generated_datasets/air_org.csv
@@ -96,4 +108,4 @@ hive -e 'select * from bycarr' | sed 's/[\t]/,/g' >  ~/generated_datasets/byCarr
 hive -e 'select * from bymodel' | sed 's/[\t]/,/g' >  ~/generated_datasets/bymodel.csv
 hive -e 'select * from bymyear' | sed 's/[\t]/,/g' >  ~/generated_datasets/bymyear.csv
 hive -e 'select * from byCord' | sed 's/[\t]/,/g' >  ~/generated_datasets/byCord.csv
-
+hive -e 'select * from top5' | sed 's/[\t]/,/g' >  ~/generated_datasets/top5.csv
