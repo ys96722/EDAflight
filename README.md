@@ -216,7 +216,19 @@ This graph is not that interesting, because the colors are similar between model
 
 
 
-##### 3.2.4 Busiest airports (YL)
+##### 3.2.4 Busiest states with most air routes (YL)
+
+In order to have an overview that which place in America has the most air routes, we select the top five states base on the total number of flights for each state.  The chord diagram below clearly illustrate the flights between the top five busiest states. 
+
+![flights_chord](plots/flights_chord.png)
+
+As we can see, the flights from Florida and California take up the majority of flights, following are Texas and Illinois, Georgia. Plus, I also subset the delayed flights seperately, to figure out the which air routes would delay badly.
+
+![dely_fl_chord](plots/dely_fl_chord.png)
+
+We really found something interesting here.  Most delayed flights from Georgia are flying to Illinois, while 啊great many flights delayed in CA are in-state flying, whose destination is also in California. As we noticed that the number of the flights in Florida almost take up one third of the total number of flights in these five states, but the number of delayed flight in Florida is relatively small compare to its total amount. We can infere that the weather in Florida is very good in most of the year and as a main tourist attraction,  airports there have good control of plane in and out.
+
+
 
 ##### 3.2.5 delay ~  m_year (Yoon)
 
