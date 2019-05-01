@@ -196,7 +196,7 @@ This graph is not that interesting, because the colors are similar between model
 
   ![numFlightMap](plots/numFlightMap.png)
 
-  Based on the above map, the top five states with most number of flights are California, Texas, Illinois, Florida, and Georgia.
+  Based on the above map, the top five states with most number of flights are California, Texas, Illinois, Florida, and Georgia. Relatively, we could see that these five states have a substantial more amount of flights compared to the rest of the states.
 
 
 
@@ -204,7 +204,7 @@ This graph is not that interesting, because the colors are similar between model
 
   ![rateCancellationMap](plots/rateCancellationMap.png)
 
-  Based on the above map, the top four states with the highest rate of cancelled flights are South Dakota, West Virginia, Michigan, and Maine.
+  Based on the above map, the top four states with the highest rate of cancelled flights are South Dakota, West Virginia, Michigan, and Maine. Again, we could see that these four states have substantially higher rate of cancellation compared to the rest of the states.
 
 
 
@@ -212,7 +212,7 @@ This graph is not that interesting, because the colors are similar between model
 
   ![rateDelayMap](plots/rateDelayMap.png)
 
-  Based on the above plot, the top five states with the highest rate of cancelled flights are Illinois, Georgia, Michigan, Nevada, and Texas. It should be noted that the relative distribution of the above map follows a similar trend with the first geographical heatmap (By Number of Flights), which suggests that the rate of delay may be related to the number of flights in a certain state.
+  Based on the above plot, the top five states with the highest rate of cancelled flights are Illinois, Georgia, Michigan, Nevada, and Texas. It should be noted that the relative distribution of the above map follows a similar trend with the first geographical heatmap (By Number of Flights), which suggests that the rate of delay may be related to the number of flights in a certain state. However, the gap between the states are closer to each other, evident in much more even distribution of colors throughout the states.
 
 
 
@@ -255,4 +255,4 @@ This project is licensed under the MIT License
 ## Acknowledgments
 
 - Statistics 480: Data Science Foundations
-- **Darren Glosemeyer**
+- **Professor Darren Glosemeyer**

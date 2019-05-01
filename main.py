@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[118]:
+# In[1]:
 
 
 import pandas as pd
@@ -15,7 +15,7 @@ import os
 # In[2]:
 
 
-sns.set_style('darkgrid')
+sns.set_style('whitegrid')
 plt.rcParams['figure.figsize'] = 15,15
 
 
@@ -52,13 +52,13 @@ planes = pd.read_csv('original_datasets/plane-data.csv')
 oldData = pd.read_csv('original_datasets/1998.csv')
 
 
-# In[92]:
+# In[8]:
 
 
 newData = pd.read_csv('original_datasets/2006.csv')
 
 
-# In[108]:
+# In[9]:
 
 
 byCarrier = pd.read_csv('generated_datasets/byCarr.csv')
@@ -70,7 +70,7 @@ byState = pd.read_csv('generated_datasets/byState.csv')
 
 # # Wrangling
 
-# In[21]:
+# In[10]:
 
 
 oldCancel = oldData[oldData['Cancelled'] == 1]
@@ -81,26 +81,26 @@ newCancel = newData[newData['Cancelled'] == 1]
 
 # ## 1998
 
-# In[63]:
+# In[ ]:
 
 
 sns.countplot(data=oldCancel, x='Month').set_title("Number of Cancellations by Month in 1998")
 plt.savefig('Number of Cancellations by Month in 1998', dpi=100)
 
 
-# In[26]:
+# In[ ]:
 
 
 sns.countplot(data=oldCancel, x='DayofMonth').set_title("Count of Cancellations by Date in 1998")
 
 
-# In[27]:
+# In[ ]:
 
 
 sns.countplot(data=oldCancel, x='DayOfWeek').set_title("Count of Cancellations by Day in 1998")
 
 
-# In[28]:
+# In[ ]:
 
 
 sns.countplot(data=oldCancel, x='UniqueCarrier')
@@ -108,7 +108,7 @@ sns.countplot(data=oldCancel, x='UniqueCarrier')
 
 # ## 2006
 
-# In[64]:
+# In[ ]:
 
 
 f,ax=plt.subplots(1,2,figsize=(20,8))
@@ -120,33 +120,33 @@ plt.savefig('Distribution of Cancellation Codes')
 print('A = carrier, B = weather, C = NAS, D = security')
 
 
-# In[30]:
+# In[ ]:
 
 
 sns.countplot(data=newCancel, x='Month').set_title("Count of Cancellations in 2006")
 plt.show()
 
 
-# In[31]:
+# In[ ]:
 
 
 sns.countplot(data=newCancel, x='DayofMonth').set_title("Count of Cancellations by Date in 2006")
 
 
-# In[32]:
+# In[ ]:
 
 
 sns.countplot(data=newCancel, x='DayOfWeek').set_title("Count of Cancellations by Day in 2006")
 
 
-# In[65]:
+# In[ ]:
 
 
 sns.countplot(data=newCancel, x='Month', hue="CancellationCode").set_title("Number of Cancellations by Code in 2006")
 plt.savefig("Number of Cancellations by Code in 2006")
 
 
-# In[34]:
+# In[ ]:
 
 
 sns.countplot(data=newCancel, x='UniqueCarrier')
@@ -154,7 +154,7 @@ sns.countplot(data=newCancel, x='UniqueCarrier')
 
 # # Rate of Cancellation by Carrier
 
-# In[66]:
+# In[ ]:
 
 
 cancelRateCarrier = sns.barplot(data = byCarrier, x = 'year', y= byCarrier['num_cancl']/byCarrier['num_flight'] , 
@@ -166,25 +166,27 @@ plt.tight_layout()
 plt.savefig("Rate of Cancellation by Carrier")
 
 
-# In[67]:
+# In[ ]:
 
 
-delayByManuYear = sns.lineplot(data = byManu, x = 'manu_year',y= 'avg_dely', hue='year', ci =None)
+palette = sns.color_palette("mako_r", 2)
+delayByManuYear = sns.lineplot(data = byManu, x = 'manu_year',y= 'avg_dely', 
+                               hue='year', ci =None, palette=palette)
 delayByManuYear.set_title('Mean Delay by Manufactured Year')
+delayByManuYear.set_aspect(2.4)
 # plt.axvline(1997, 0, color='r', linestyle='--', lw=2, label="IMF Crisis")
 # plt.axvline(2002, 0, color='w', linestyle='--', lw=2, label="2002 World Cup")
 # plt.axvline(2008, 0, color='b', linestyle='--', lw=2, label="Global Financial Crisis")
 # plt.axvline(2014, 0, color='y', linestyle='--', lw=2, label="Sinking of Sewol Ship")
 plt.xlim(1956,2007)
-# delayByManuYear.set_label('label1')
-delayByManuYear.legend()
+delayByManuYear.legend({'1996': 'red', '2008': 'blue'})
 plt.savefig("Mean Delay by Manufactured Year")
 plt.show()
 
 
 # # Map Plot for Cancellation Rate
 
-# In[68]:
+# In[ ]:
 
 
 plt.matshow(byManu.corr())
@@ -194,42 +196,42 @@ plt.colorbar()
 plt.savefig("Correlation Heatmap")
 
 
-# In[102]:
+# In[ ]:
 
 
 faster = newData[['CRSElapsedTime','ActualElapsedTime','DepDelay','ArrDelay']].dropna()
 
 
-# In[104]:
+# In[ ]:
 
 
 faster['TimeAir'] = faster['ActualElapsedTime'] - faster['CRSElapsedTime']
 faster['DelayDiff'] = faster['ArrDelay'] - faster['DepDelay']
 
 
-# In[105]:
+# In[ ]:
 
 
-relationPlot = sns.scatterplot(data = faster, 
-                      x = 'DelayDiff',
-                      y= 'TimeAir', 
-                      ci =None)
-fasterPlot.set_title('Delay Difference vs Flight Time Difference')
-plt.show()
+# relationPlot = sns.scatterplot(data = faster, 
+#                       x = 'DelayDiff',
+#                       y= 'TimeAir', 
+#                       ci =None)
+# relationPlot.set_title('Delay Difference vs Flight Time Difference')
+# plt.show()
 
 
-# In[97]:
+# In[ ]:
 
 
-fasterPlot = sns.scatterplot(data = faster, 
-                      x = 'DepDelay',
-                      y= faster['CRSElapsedTime'] - faster['ActualElapsedTime'], 
-                      ci =None)
-fasterPlot.set_title('Departure Delay versus Flight Time')
-plt.show()
+# fasterPlot = sns.scatterplot(data = faster, 
+#                       x = 'DepDelay',
+#                       y= faster['CRSElapsedTime'] - faster['ActualElapsedTime'], 
+#                       ci =None)
+# fasterPlot.set_title('Departure Delay versus Flight Time')
+# plt.show()
 
 
-# In[126]:
+# In[ ]:
 
 
 state_geo = os.path.join('generated_datasets/', 'us-states.json')
@@ -249,13 +251,13 @@ rateCancellationMap.choropleth(
  line_opacity=0.2,
  legend_name='Cancellation Rate (%)'
 )
-folium.LayerControl().add_to(m)
+folium.LayerControl().add_to(rateCancellationMap)
  
 # Save to html
 rateCancellationMap.save('rateCancellationMap.html')
 
 
-# In[127]:
+# In[ ]:
 
 
 rateDelayMap = folium.Map(location=[37, -102], zoom_start=5)
@@ -272,13 +274,13 @@ rateDelayMap.choropleth(
  line_opacity=0.2,
  legend_name='Delay Rate (%)'
 )
-folium.LayerControl().add_to(m)
+folium.LayerControl().add_to(rateDelayMap)
  
 # Save to html
 rateDelayMap.save('rateDelayMap.html')
 
 
-# In[129]:
+# In[ ]:
 
 
 numFlightMap = folium.Map(location=[37, -102], zoom_start=5)
@@ -295,8 +297,8 @@ numFlightMap.choropleth(
  line_opacity=0.2,
  legend_name='Number of Flights'
 )
-folium.LayerControl().add_to(m)
+folium.LayerControl().add_to(numFlightMap)
  
 # Save to html
-numFlightMap.save('numFlightMap.png')
+numFlightMap.save('numFlightMap.html')
 
