@@ -11,7 +11,7 @@ library(readr)
 
 # the following code is based on the following source:
 # lecture code Chapter5.R, heatmaptreemapdensityplot.R
-# 
+# circle_diagrams.R
 
 # load data
 
@@ -34,6 +34,7 @@ byState = read_csv("generated_datasets/byState.csv")
 byCord = read_csv("generated_datasets/byCord.csv")
 byCarr = read_csv("generated_datasets/byCarr.csv")
 bymodel = read_csv("generated_datasets/bymodel.csv")
+top5 = read.csv("generated_datasets/top5.csv", header = FALSE)
 
 # creating plot for monthly/weekofday delay
 # prepare data
@@ -213,3 +214,45 @@ for(i in 1:2){
           title=titles[i])
   dev.off()
 }
+
+
+
+
+# Chord Diagram
+# flights between states
+start = top5$V3
+end = top5$V4
+
+mat = matrix(0, nrow = length(unique(start)),
+ncol = length(unique(end))
+)
+
+rownames(mat) = unique(start)
+colnames(mat) = unique(end)
+
+for(i in seq_along(start)) mat[start[i], end[i]] = 1+ mat[start[i], end[i]]
+
+grid.col1 = c( "#E69F00", "#56B4E9", "#D55E00", "#009E73","#F0E442")
+
+png(filename=paste("plots/", "Chord Diagram of Flights Between States" , ".png", sep = "")
+chordDiagram(mat, grid.col = grid.col1)
+dev.off()
+
+# delayed flights between states
+delay_top5 = top5[top5$V1==1,]
+start = delay_top5$V3
+end = delay_top5$V4
+
+# Create Adjacency Matrix
+mat1 = matrix(0, nrow = length(unique(start)),
+ncol = length(unique(end))
+)
+
+rownames(mat1) = unique(start)
+colnames(mat1) = unique(end)
+
+for(i in seq_along(start)) mat1[start[i], end[i]] = 1 + mat1[start[i], end[i]]
+
+png(filename=paste("plots/", "Chord Diagram of Delayed Flights Between States" , ".png", sep = "")
+chordDiagram(mat1, grid.col = grid.col1, directional = TRUE)
+dev.off()
