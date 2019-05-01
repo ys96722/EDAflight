@@ -1,11 +1,15 @@
 
 # coding: utf-8
 
-# In[1]:
+# # Import Libraries
+
+# In[85]:
 
 
+# Wrangling
 import pandas as pd
 import numpy as np
+# Plotting
 import matplotlib.pyplot as plt
 import seaborn as sns
 import folium
@@ -15,6 +19,7 @@ import os
 # In[2]:
 
 
+# Set Plotting Styles
 sns.set_style('whitegrid')
 plt.rcParams['figure.figsize'] = 15,15
 
@@ -26,7 +31,9 @@ from jupyterthemes import jtplot
 jtplot.style(figsize=(15,15))
 
 
-# # Import
+# # Import Datasets
+
+# ### Original Datasets
 
 # In[4]:
 
@@ -58,6 +65,8 @@ oldData = pd.read_csv('original_datasets/1998.csv')
 newData = pd.read_csv('original_datasets/2006.csv')
 
 
+# ### Modified Datasets (From Hive Code)
+
 # In[9]:
 
 
@@ -68,7 +77,7 @@ byManu = pd.read_csv('generated_datasets/bymyear.csv')
 byState = pd.read_csv('generated_datasets/byState.csv')
 
 
-# # Wrangling
+# ### Subset Datasets
 
 # In[10]:
 
@@ -79,161 +88,112 @@ newCancel = newData[newData['Cancelled'] == 1]
 
 # # Plots
 
-# ## 1998
+# ## Plots from 1998
 
-# In[ ]:
+# In[11]:
 
 
+# Generate the Plot
 sns.countplot(data=oldCancel, x='Month').set_title("Number of Cancellations by Month in 1998")
+# Save the Plot
 plt.savefig('Number of Cancellations by Month in 1998', dpi=100)
 
 
-# In[ ]:
+# ## Plots from 2006
+
+# In[15]:
 
 
-sns.countplot(data=oldCancel, x='DayofMonth').set_title("Count of Cancellations by Date in 1998")
-
-
-# In[ ]:
-
-
-sns.countplot(data=oldCancel, x='DayOfWeek').set_title("Count of Cancellations by Day in 1998")
-
-
-# In[ ]:
-
-
-sns.countplot(data=oldCancel, x='UniqueCarrier')
-
-
-# ## 2006
-
-# In[ ]:
-
-
+# Set Subplot Grids
 f,ax=plt.subplots(1,2,figsize=(20,8))
 
+# Generate the Plots
 newCancel['CancellationCode'].value_counts().plot.pie(explode=[0.05,0.05,0.05,0.05],autopct='%1.1f%%',ax=ax[0],shadow=True)
 ax[0].set_ylabel('')
 sns.countplot('CancellationCode', order = newCancel['CancellationCode'].value_counts().index, data=newCancel, ax=ax[1])
+
+# Save the Plots
 plt.savefig('Distribution of Cancellation Codes')
 print('A = carrier, B = weather, C = NAS, D = security')
 
 
-# In[ ]:
+# In[19]:
 
 
-sns.countplot(data=newCancel, x='Month').set_title("Count of Cancellations in 2006")
-plt.show()
-
-
-# In[ ]:
-
-
-sns.countplot(data=newCancel, x='DayofMonth').set_title("Count of Cancellations by Date in 2006")
-
-
-# In[ ]:
-
-
-sns.countplot(data=newCancel, x='DayOfWeek').set_title("Count of Cancellations by Day in 2006")
-
-
-# In[ ]:
-
-
+# Generate the Plot
 sns.countplot(data=newCancel, x='Month', hue="CancellationCode").set_title("Number of Cancellations by Code in 2006")
+
+# Save the Plot
 plt.savefig("Number of Cancellations by Code in 2006")
-
-
-# In[ ]:
-
-
-sns.countplot(data=newCancel, x='UniqueCarrier')
 
 
 # # Rate of Cancellation by Carrier
 
-# In[ ]:
+# In[21]:
 
 
+# Generate the Plot
 cancelRateCarrier = sns.barplot(data = byCarrier, x = 'year', y= byCarrier['num_cancl']/byCarrier['num_flight'] , 
                                         ci =None , hue = 'carrier')
+
+# Set the Plot's title
 cancelRateCarrier.set_title('Rate of Cancellation by Carrier')
+# Rotate the Plot's X-axis Ticks
 cancelRateCarrier.set_xticklabels(cancelRateCarrier.get_xticklabels(), 
                                           rotation=40, ha="right")
 plt.tight_layout()
+
+#Save the Plot
 plt.savefig("Rate of Cancellation by Carrier")
 
 
-# In[ ]:
+# In[84]:
 
 
+# Subset the Dataset 
+cleanedManu = byManu[~((byManu.year == 1998) & (byManu.manu_year > 1998))]
+
+# Generate Color Palette 
 palette = sns.color_palette("mako_r", 2)
-delayByManuYear = sns.lineplot(data = byManu, x = 'manu_year',y= 'avg_dely', 
-                               hue='year', ci =None, palette=palette)
+
+# Generate the Plot
+delayByManuYear = sns.lineplot(data = cleanedManu, x = 'manu_year',y= 'avg_dely', 
+                               hue='year', ci =None, estimator='mean', palette=palette)
+
+# Set the Plot's Style
 delayByManuYear.set_title('Mean Delay by Manufactured Year')
 delayByManuYear.set_aspect(2.4)
-# plt.axvline(1997, 0, color='r', linestyle='--', lw=2, label="IMF Crisis")
-# plt.axvline(2002, 0, color='w', linestyle='--', lw=2, label="2002 World Cup")
-# plt.axvline(2008, 0, color='b', linestyle='--', lw=2, label="Global Financial Crisis")
-# plt.axvline(2014, 0, color='y', linestyle='--', lw=2, label="Sinking of Sewol Ship")
 plt.xlim(1956,2007)
-delayByManuYear.legend({'1996': 'red', '2008': 'blue'})
+delayByManuYear.legend()
+
+# Save the Plot
 plt.savefig("Mean Delay by Manufactured Year")
 plt.show()
 
 
 # # Map Plot for Cancellation Rate
 
-# In[ ]:
+# In[23]:
 
 
+# Generate the Heatmap
 plt.matshow(byManu.corr())
+
+# Adjust Y and X labels and ticks
 plt.xticks(range(len(byManu.columns)), byManu.columns)
 plt.yticks(range(len(byManu.columns)), byManu.columns)
+
+# Generate the Legend (Color Bar)
 plt.colorbar()
+
+# Save the Plot
 plt.savefig("Correlation Heatmap")
 
 
-# In[ ]:
+# In[28]:
 
 
-faster = newData[['CRSElapsedTime','ActualElapsedTime','DepDelay','ArrDelay']].dropna()
-
-
-# In[ ]:
-
-
-faster['TimeAir'] = faster['ActualElapsedTime'] - faster['CRSElapsedTime']
-faster['DelayDiff'] = faster['ArrDelay'] - faster['DepDelay']
-
-
-# In[ ]:
-
-
-# relationPlot = sns.scatterplot(data = faster, 
-#                       x = 'DelayDiff',
-#                       y= 'TimeAir', 
-#                       ci =None)
-# relationPlot.set_title('Delay Difference vs Flight Time Difference')
-# plt.show()
-
-
-# In[ ]:
-
-
-# fasterPlot = sns.scatterplot(data = faster, 
-#                       x = 'DepDelay',
-#                       y= faster['CRSElapsedTime'] - faster['ActualElapsedTime'], 
-#                       ci =None)
-# fasterPlot.set_title('Departure Delay versus Flight Time')
-# plt.show()
-
-
-# In[ ]:
-
-
+# Set Relative Path to the States Json File
 state_geo = os.path.join('generated_datasets/', 'us-states.json')
  
 # Initialize the map:
@@ -257,9 +217,10 @@ folium.LayerControl().add_to(rateCancellationMap)
 rateCancellationMap.save('rateCancellationMap.html')
 
 
-# In[ ]:
+# In[29]:
 
 
+# Initialize the map:
 rateDelayMap = folium.Map(location=[37, -102], zoom_start=5)
  
 # Add the color for the chloropleth:
@@ -280,9 +241,10 @@ folium.LayerControl().add_to(rateDelayMap)
 rateDelayMap.save('rateDelayMap.html')
 
 
-# In[ ]:
+# In[30]:
 
 
+# Initialize the map:
 numFlightMap = folium.Map(location=[37, -102], zoom_start=5)
  
 # Add the color for the chloropleth:
