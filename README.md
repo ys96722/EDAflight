@@ -32,7 +32,7 @@ Imagine when we were in an airport ready for the vacation, but suddenly told by 
 There are four datasets we work on : *airlines, airports, carriers* and *plane-data*. The dataset *Airlines* contains 29 variables, recording flight's date, delay time and many other information. *Airport* include 7 variables, showing the specific location of each airports, such as city, state where it locates and an exact coordinate . The *carrier* dataset only has 2 variables, the carrier codes and their full name. As for the *plane-data*, it contains 9 variables recording comprehensive information of each plane. For example, it includes the
 responding manufacturer, model type and the year it produced. These are all valuable information for us to explore the causes for delay of planes, especially for the delay of departure and cancellation. In the following, we would join different dataset according to our need to analyze different aspect of airline delay situation. Since there is data in 1998 and 2006, we also want to see if there is any improvement made for the delay and cancellation situation through these years.
 
-### 2 Wrangling (LY)
+### 2 Wrangling
 - byCarr (Hive)
 
   Grouping the dataset by the different carrier, I calculate the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for each group. Selecting only 8 variables into this *byCarr* dataset, each record shows  the number of flight, number and rate of the delay, number and rate of the cancellation and average delay time for different carriers.
@@ -188,9 +188,7 @@ This graph is not that interesting, because the colors are similar between model
 
  Some of the notable negative correlations include rate of delay & year and rate of cancellation & year.. As for the rate of delay and rate of cancellation versus delay, it makes sense that they would decrease over the years as airports and airlines stabilize and improve their procedures. Also, note the positive correlation between number of cancellation and number of delays versus number of flights. This is also natural since more flights could lead to more cancellations or delays.
 
-
-
-##### 3.2.3 Geographical Heatmap Analysis (Yoon)
+##### 3.2.3 Geographical Heatmap Analysis
 
 - By Number of Flights
 
@@ -214,9 +212,7 @@ This graph is not that interesting, because the colors are similar between model
 
   Based on the above plot, the top five states with the highest rate of cancelled flights are Illinois, Georgia, Michigan, Nevada, and Texas. It should be noted that the relative distribution of the above map follows a similar trend with the first geographical heatmap (By Number of Flights), which suggests that the rate of delay may be related to the number of flights in a certain state. However, the gap between the states are closer to each other, evident in much more even distribution of colors throughout the states.
 
-
-
-##### 3.2.4 Busiest states with most air routes (YL)
+##### 3.2.4 Busiest states with most air routes
 
 In order to have an overview that which place in America has the most air routes, we select the top five states base on the total number of flights for each state.  The chord diagram below clearly illustrate the flights between the top five busiest states. 
 
@@ -228,15 +224,15 @@ As we can see, the flights from Florida and California take up the majority of f
 
 We really found something interesting here.  Most delayed flights from Georgia are flying to Illinois, while 啊great many flights delayed in CA are in-state flying, whose destination is also in California. As we noticed that the number of the flights in Florida almost take up one third of the total number of flights in these five states, but the number of delayed flight in Florida is relatively small compare to its total amount. We can infere that the weather in Florida is very good in most of the year and as a main tourist attraction,  airports there have good control of plane in and out.
 
-
-
-##### 3.2.5 delay ~  m_year (Yoon)
+##### 3.2.5 Does flight delay has anything to do with when the pane was manufactured
 
 ![Mean Delay by Manufactured Year](plots/Mean Delay by Manufactured Year.png)
 
 Based on the graph above, the average delay times have sharp declines and inclines throughout all of the years. This may be due to several possible causes. Certain planes stop flying after some age, leading to sudden decrease and increase during the cycles when old planes stop flying and new planes start flying. Also, this may be due to the fact that the overall quality of the planes in a certain year is much more influential in the delay times, leading to sharp differences in each year/cycle.
 
-### 4 Conclusion
+### 4 Contribution
+
+Everyone equally contributed in this project.
 
 ## Reference
 
